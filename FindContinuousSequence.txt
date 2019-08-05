@@ -1,0 +1,28 @@
+import java.util.ArrayList;
+class Solution {
+    public ArrayList<ArrayList<Integer> > FindContinuousSequence(int sum) {
+        ArrayList<ArrayList<Integer>> lists = new ArrayList<>();
+        int plow = 1;
+        int phigh = 2;
+        while(phigh > plow) {
+            int cur = (phigh + plow) * (phigh - plow + 1) / 2;
+            if(cur == sum){
+                ArrayList<Integer> list = new ArrayList<>();
+                for(int i=plow; i<=phigh; i++)
+                    list.add(i);
+                lists.add(list);
+                phigh++;
+            }else if(cur < sum)
+                phigh++;
+            else
+                plow++;
+        }
+        return lists;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        new Solution().FindContinuousSequence(9);
+    }
+}
